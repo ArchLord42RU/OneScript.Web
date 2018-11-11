@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using ScriptEngine.Machine;
 using ScriptEngine.Machine.Contexts;
 
@@ -104,6 +105,16 @@ namespace OneScript.WebHost.Infrastructure
             {
                 return ContextValuesMarshaller.ConvertToCLRObject(value);
             }
+        }
+        public static T ToAttribute<T>(this AnnotationDefinition annotation) where T: Attribute
+        {
+            Type type = typeof(T);
+            
+            //TODO: Параметры конструктора
+
+            T inst = (T)Activator.CreateInstance(type);
+
+            return inst;
         }
     }
 }

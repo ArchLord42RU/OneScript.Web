@@ -230,10 +230,15 @@ namespace OneScript.WebHost.Infrastructure.Implementations
                 {
                     attrList.Add(new HttpGetAttribute());
                 }
+
+                if(name == "route")
+                {
+                    attrList.Add(annotation.ToAttribute<RouteAttribute>());
+                }
             }
 
             return attrList;
-        }
+        }        
 
         private void CorrectDispId(ReflectedMethodInfo scriptMethodInfo)
         {
